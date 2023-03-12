@@ -19,7 +19,7 @@ services:
     env_file:
       - .env
   frontend:
-    image: udagram-frontend:local
+    image: udagram-frontend
     ports:
       - "8100:80"
     env_file:
