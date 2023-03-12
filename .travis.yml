@@ -14,7 +14,20 @@ before_script:
   - echo "no tests"
 
 script:
-  - docker --version # print the version for logging
+  # Create .env file and write enviroments
+  - touch .env
+  - echo POSTGRES_USERNAME=${POSTGRES_USERNAME} >> .env
+  - echo POSTGRES_PASSWORD=${POSTGRES_PASSWORD} >> .env
+  - echo POSTGRES_HOST=${POSTGRES_HOST} >> .env
+  - echo POSTGRES_DB=${POSTGRES_DB} >> .env
+  - echo AWS_BUCKET=${AWS_BUCKET} >> .env
+  - echo AWS_REGION=${AWS_REGION} >> .env
+  - echo AWS_PROFILE=${AWS_PROFILE} >> .env
+  - echo JWT_SECRET=${JWT_SECRET} >> .env
+  - echo URL=${URL} >> .env
+  - cat .env
+  # print the version for logging
+  - docker --version
   # build containers
   - docker-compose -f docker-compose-build.yaml build --parallel
   # - docker build -t udagram-api-user ./udagram-api-user
