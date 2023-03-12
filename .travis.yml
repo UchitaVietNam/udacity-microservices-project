@@ -14,26 +14,14 @@ before_script:
   - echo "no tests"
 
 script:
-  # Create .env file and write enviroments
-  - touch .env
-  - echo POSTGRES_USERNAME=$POSTGRES_USERNAME >> .env
-  - echo POSTGRES_PASSWORD=$POSTGRES_PASSWORD >> .env
-  - echo POSTGRES_HOST=$POSTGRES_HOST >> .env
-  - echo POSTGRES_DB=$POSTGRES_DB >> .env
-  - echo AWS_BUCKET=$AWS_BUCKET >> .env
-  - echo AWS_REGION=$AWS_REGION >> .env
-  - echo AWS_PROFILE=$AWS_PROFILE >> .env
-  - echo JWT_SECRET=$JWT_SECRET >> .env
-  - echo URL=$URL >> .env
-  # print the version for logging
   - docker --version
   # build containers
   - docker-compose -f docker-compose-build.yaml build --parallel
   # tag containers
-  - docker tag udagram-api-user uchitavietnam/udagram-api-user:latest
-  - docker tag udagram-api-feed uchitavietnam/udagram-api-feed:latest
-  - docker tag reverseproxy uchitavietnam/reverseproxy:latest
-  - docker tag udagram-frontend uchitavietnam/udagram-frontend:latest
+  - docker tag uchitavietnam/udagram-api-user uchitavietnam/udagram-api-user:latest
+  - docker tag uchitavietnam/udagram-api-feed uchitavietnam/udagram-api-feed:latest
+  - docker tag uchitavietnam/reverseproxy uchitavietnam/reverseproxy:latest
+  - docker tag uchitavietnam/udagram-frontend uchitavietnam/udagram-frontend:latest
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
